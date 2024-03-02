@@ -1,1 +1,1 @@
-# fully-amped
+# fully-amped sample
