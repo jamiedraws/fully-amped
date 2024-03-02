@@ -1,1 +1,18 @@
-C:/Users/jguijarro/Documents/Library/.gitignore
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+node_modules
+Shared
+.browserslistrc
+ProjectStarterKit.bat
+package-lock.json
+package.json
+tsconfig.json 
+webpack.config.js
+.prettierrc.json
