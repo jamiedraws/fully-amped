@@ -1,0 +1,26 @@
+$select: ".disclosure" !default;
+
+// utils
+@use "Shared/scss/templates/base/utils/disclosure";
+
+@mixin base {
+    @include disclosure.inactive-state {
+        display: none;
+    }
+
+    #{$select} {
+        background: none;
+        border: none;
+
+        margin: 1rem 0;
+        padding: 0.5em 0;
+
+        text-transform: uppercase;
+        text-decoration: underline;
+        text-underline-offset: 0.3em;
+
+        color: currentColor;
+
+        @content;
+    }
+}

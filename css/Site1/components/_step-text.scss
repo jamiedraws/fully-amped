@@ -1,0 +1,85 @@
+$select: ".step-text" !default;
+
+// config
+@use "./../config/fonts";
+@use "./../config/queries";
+
+// abstracts
+@use "Shared/scss/templates/base/abstracts/group";
+@use "Shared/scss/templates/base/abstracts/background";
+@use "Shared/scss/templates/base/abstracts/space";
+
+@mixin base {
+    #{$select} {
+        flex: 1;
+
+        container: step-text/inline-size;
+
+        @include background.color-map(
+            $background-color: black,
+            $text-color: white
+        ) {
+            margin: var(--sign-up-group-gap, 0);
+            padding: 3rem 2rem;
+            background: linear-gradient(
+                -45deg,
+                rgba(21, 21, 21, 1) 50%,
+                rgba(0, 0, 0, 1) 50%
+            );
+        }
+
+        &__group {
+            @include group.contain-flex($gap: 2rem) {
+            }
+
+            &::before {
+                --circle-size: 1.5em;
+
+                content: attr(data-step);
+
+                font-size: fonts.cascade-em(60);
+                font-weight: bold;
+
+                align-self: center;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                width: var(--circle-size);
+                height: var(--circle-size);
+                border-radius: 100%;
+                background: var(--color-first);
+            }
+        }
+
+        &__text {
+            flex: 1;
+
+            line-height: 1.75;
+            font-weight: 500;
+
+            @include space.between-flow-elements($gap: 1rem) {
+            }
+        }
+
+        &__title {
+            font-size: fonts.cascade-em(24);
+            text-transform: uppercase;
+            color: var(--color-first);
+        }
+
+        @container step-text (inline-size < #{queries.em(380)}) {
+            &__group {
+                flex-direction: column;
+            }
+
+            &__text {
+                flex-basis: 100%;
+
+                text-align: center;
+            }
+        }
+
+        @content;
+    }
+}

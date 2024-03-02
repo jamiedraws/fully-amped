@@ -1,0 +1,24 @@
+@use "sass:math";
+
+$select: ".contain" !default;
+
+// config
+@use "./../config/fonts";
+@use "./../config/queries";
+
+// utils
+@use "Shared/scss/templates/base/utils/contain";
+
+@mixin base {
+    @include contain.base;
+
+    #{$select} {
+        &--video {
+            @include contain.ratio(math.div(16, 9));
+
+            background: var(--main-text-color);
+        }
+
+        @content;
+    }
+}

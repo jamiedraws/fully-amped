@@ -1,0 +1,70 @@
+$select: ".features-benefits" !default;
+
+// config
+@use "./../config/fonts";
+@use "./../config/queries";
+
+// abstracts
+@use "Shared/scss/templates/base/abstracts/list";
+@use "Shared/scss/templates/base/abstracts/background";
+@use "Shared/scss/templates/base/abstracts/space";
+
+@mixin base {
+    #{$select} {
+        @include space.between-flow-elements;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        > * {
+            width: 100%;
+        }
+
+        &__title {
+            @include background.color-map(
+                var(
+                    --features-benefits-background-color,
+                    var(--color-second-a)
+                ),
+                var(
+                    --features-benefits-text-color,
+                    var(--main-background-color)
+                )
+            );
+            padding: 0.35em;
+
+            line-height: 1;
+            text-transform: uppercase;
+
+            font-size: fonts.em(24);
+            font-weight: 900;
+        }
+
+        &__list {
+            max-width: 20em;
+
+            text-align: left;
+            font-size: fonts.em(20);
+            line-height: 1.2;
+
+            @include list.structure($gap: 0.75rem);
+            @include list.bullet {
+                line-height: 1;
+                color: var(
+                    --features-benefits-list-bullet-color,
+                    var(--color-first)
+                );
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                transform-origin: center;
+                transform: scale(1.5);
+            }
+        }
+
+        @content;
+    }
+}

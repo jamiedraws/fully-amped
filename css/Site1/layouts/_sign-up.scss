@@ -1,0 +1,84 @@
+$select: ".sign-up" !default;
+
+// config
+@use "./../config/fonts";
+@use "./../config/queries";
+
+// abstracts
+@use "Shared/scss/templates/base/abstracts/group";
+@use "Shared/scss/templates/base/abstracts/space";
+
+@mixin base {
+    #{$select} {
+        margin-top: var(--section-container-frame-outer);
+        margin-bottom: var(--section-container-frame-inner);
+        overflow: hidden;
+
+        --sign-up-group-gap: 0.25rem;
+
+        &__header {
+            @include fonts.base-em(18);
+
+            @include space.between-flow-elements($gap: 1rem) {
+            }
+
+            a {
+                color: var(--color-first);
+            }
+
+            margin-bottom: 2rem;
+        }
+
+        &__title {
+            line-height: 1;
+            font-size: clamp(fonts.cascade-em(30), 5vw, fonts.cascade-em(50));
+            text-transform: uppercase;
+
+            b {
+                color: var(--color-first);
+            }
+        }
+
+        &__group {
+            display: flex;
+            flex-wrap: wrap;
+
+            margin-inline: calc(var(--sign-up-group-gap) * -1);
+        }
+
+        &__step {
+            flex-basis: queries.em(380);
+            flex-grow: 1;
+
+            display: flex;
+        }
+
+        &__button {
+            flex-basis: 100%;
+
+            margin-top: var(--sign-up-group-gap);
+
+            --button-container-display: flex;
+            --button-font-size: #{fonts.cascade-em(50)};
+            --button-padding: 0.25em;
+        }
+
+        @media all and (max-width: #{queries.section-container($length: 980)}) {
+            &__header {
+                text-align: center;
+            }
+
+            &__title {
+                max-width: 20ch;
+                margin-inline: auto;
+            }
+
+            &__text-container:not(:last-child) {
+                display: block;
+                margin-bottom: 1rem;
+            }
+        }
+
+        @content;
+    }
+}

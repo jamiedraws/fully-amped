@@ -1,0 +1,10 @@
+// config
+@use "./../config/queries";
+
+@mixin max-width-em($width: 0) {
+    img[width="#{$width}"] {
+        max-width: queries.cascade-em($width);
+
+        @content;
+    }
+}

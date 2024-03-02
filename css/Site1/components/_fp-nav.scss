@@ -1,0 +1,46 @@
+$select: ".fp-nav" !default;
+
+// config
+@use "./../config/fonts";
+@use "./../config/queries";
+
+// components
+@use "Shared/scss/templates/base/components/fp-nav";
+
+@mixin base {
+    @include fp-nav.base;
+
+    @media all and (min-width: queries.get(document-mobile-portrait)) {
+        @include fp-nav.hide;
+    }
+
+    #{$select} {
+        font-size: 1.5rem;
+
+        &__a {
+            background: var(--fp-nav-background-color, var(--color-first));
+
+            &:hover,
+            &:focus {
+                background: var(
+                    --fp-nav-background-color-rollover,
+                    var(--color-first-a)
+                );
+            }
+
+            &--order {
+                background: var(--fp-nav-color-background-order, red);
+
+                &:hover,
+                &:focus {
+                    background: var(
+                        --fp-nav-order-background-color-rollover,
+                        rgb(250, 42, 42)
+                    );
+                }
+            }
+        }
+
+        @content;
+    }
+}

@@ -1,0 +1,35 @@
+$select: ".content" !default;
+
+// config
+@use "./../config/fonts";
+@use "./../config/queries";
+
+// abstracts
+@use "Shared/scss/templates/base/abstracts/group";
+@use "Shared/scss/templates/base/abstracts/space";
+@use "Shared/scss/templates/base/abstracts/background";
+@use "Shared/scss/templates/base/abstracts/list";
+@use "./../abstracts/text";
+
+@mixin base {
+    #{$select} {
+        padding-top: var(--section-container-frame-outer);
+        padding-bottom: var(--section-container-frame-outer);
+
+        &__group {
+            @include group.contain-flex($gap: 0.5rem) {
+            }
+        }
+
+        &__title {
+            @include text.section-title;
+        }
+
+        &__text {
+            @include space.between-flow-elements($gap: 2rem) {
+            }
+        }
+
+        @content;
+    }
+}

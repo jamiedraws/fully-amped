@@ -1,0 +1,44 @@
+$select: ".header" !default;
+
+// config
+@use "./../config/fonts";
+@use "./../config/queries";
+
+// abstracts
+@use "Shared/scss/templates/base/abstracts/group";
+@use "Shared/scss/templates/base/abstracts/background";
+
+@mixin base {
+    #{$select} {
+        --section-frame: 0.5rem 1rem;
+
+        text-align: center;
+        text-transform: uppercase;
+
+        @include background.color-map(
+            var(--header-background-color, var(--main-background-color)),
+            var(--header-text-color, var(--color-second))
+        );
+
+        @content;
+    }
+}
+
+@mixin has-nav {
+    #{$select} {
+        &--has-nav {
+            @media all and (max-width: queries.get(navbar)) {
+                #{$select} {
+                    &__in {
+                        display: none;
+                    }
+                }
+            }
+
+            #{$select} {
+            }
+
+            @content;
+        }
+    }
+}

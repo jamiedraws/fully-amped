@@ -1,0 +1,49 @@
+$select: ".conf" !default;
+
+// config
+@use "./../config/queries";
+@use "./../config/fonts";
+
+// abstracts
+@use "Shared/scss/templates/base/abstracts/space";
+
+@mixin base {
+    #{$select} {
+        padding-top: var(--section-container-frame-outer);
+        padding-bottom: var(--section-container-frame-outer);
+
+        text-align: center;
+
+        img {
+            margin-inline: auto;
+            margin-top: 4rem;
+        }
+
+        a {
+            color: var(--color-first);
+        }
+
+        &__title {
+            font-size: clamp(fonts.cascade-em(30), 5vw, fonts.cascade-em(40));
+            line-height: 1.25;
+            font-weight: bold;
+        }
+
+        &__text {
+            max-width: 97ch;
+            margin-inline: auto;
+
+            @include fonts.base-em(18);
+
+            @include space.between-flow-elements($gap: 2.5rem) {
+            }
+        }
+
+        &__link {
+            margin-top: 1rem;
+            text-decoration: underline;
+        }
+
+        @content;
+    }
+}

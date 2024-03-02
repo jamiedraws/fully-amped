@@ -1,0 +1,12 @@
+// config
+@use "./../config/fonts";
+@use "./../config/queries";
+
+@mixin section-title {
+    font-size: clamp(fonts.cascade-em(30), 5vw, fonts.cascade-em(50));
+    font-weight: bold;
+    text-transform: uppercase;
+    line-height: 1;
+
+    @content;
+}

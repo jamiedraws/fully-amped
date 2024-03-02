@@ -1,0 +1,100 @@
+$select: ".status-screen" !default;
+
+// components
+@use "Shared/scss/templates/base/components/status-screen";
+
+@mixin initialize {
+    @include status-screen.initialize;
+
+    #{$select} {
+        @content;
+    }
+}
+
+@mixin checkout-form {
+    #{$select} {
+        &--checkout-form {
+            --status-screen-background-color: white;
+            --status-screen-font-color: black;
+
+            --margin-offset: 1em;
+            --status-screen-status-size: 3em;
+
+            position: absolute;
+
+            #{$select} {
+                &__screen {
+                    outline: 1px solid var(--status-screen-background-color);
+                }
+
+                &__status,
+                &__output {
+                    position: sticky;
+                }
+
+                &__status {
+                    margin-top: var(--margin-offset);
+                    top: var(--margin-offset);
+                }
+
+                &__output {
+                    margin-bottom: auto;
+                    top: calc(
+                        var(--margin-offset) * 2 +
+                            var(--status-screen-status-size)
+                    );
+                }
+            }
+
+            @content;
+        }
+    }
+}
+
+@mixin inline {
+    #{$select} {
+        &--inline {
+            --status-screen-font-color: currentColor;
+            --status-screen-background-color: transparent;
+
+            position: relative;
+            z-index: 5;
+            flex-direction: row;
+            align-items: center;
+
+            &[data-status-screen-state="problem"] {
+                --status-screen-font-color: var(--validate-invalid-font-color);
+            }
+
+            #{$select} {
+                &__screen {
+                    flex-direction: row;
+                    justify-content: flex-start;
+                }
+
+                &__status {
+                    font-size: 0.5em;
+                }
+
+                &__output {
+                    text-align: left;
+                }
+
+                &__close {
+                    display: none;
+                    position: relative;
+                    top: 0;
+                    right: 0;
+                }
+
+                &__circle-icon {
+                    --checkmark-primary: currentColor;
+                    --checkmark-accent: currentColor;
+                    --checkmark-stroke: green;
+                }
+            }
+
+            @content;
+        }
+    }
+}

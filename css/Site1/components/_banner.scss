@@ -1,0 +1,45 @@
+$select: ".banner" !default;
+$color: black !default;
+
+// config
+@use "./../config/fonts";
+
+// components
+@use "Shared/scss/templates/base/components/banner" with (
+    $select: $select,
+    $color: var(--banner-background-color, var(--color-first))
+);
+
+// abstracts
+@use "Shared/scss/templates/base/abstracts/background";
+
+@mixin base {
+    @include banner.base;
+
+    #{$select} {
+        font: 900 fonts.em(20) / 1 var(--font-first);
+        text-transform: uppercase;
+        margin: 0;
+
+        @content;
+    }
+}
+
+@mixin ribbon {
+    @include banner.ribbon;
+
+    #{$select} {
+        &--ribbon {
+            display: flex;
+            justify-content: center;
+
+            max-width: 20em;
+            margin: auto;
+
+            #{$select} {
+            }
+
+            @content;
+        }
+    }
+}

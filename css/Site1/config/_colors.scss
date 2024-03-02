@@ -1,0 +1,47 @@
+@mixin scope {
+    // configure main color theme
+    --main-text-color: black;
+    --main-background-color: white;
+
+    // configure color palette theme
+    /*
+    variable naming convention: --color-<ordinal-number>-<letter>
+    ordinal-number: represents a different color hue
+    letter: represents a different shade of the <ordinal-number> color hue
+    */
+    --color-first: #0b99ff;
+    --color-first-a: #032640;
+
+    --color-second: #e0fd53;
+
+    // header color theme
+    --header-background-color: var(--color-first-a);
+    --header-text-color: var(--color-first);
+
+    // nav color theme
+    --nav-text-color: var(--main-background-color);
+    --nav-background-color: var(--main-text-color);
+    --nav-link-background-color: var(--nav-background-color);
+    --nav-button-close-color: var(--nav-background-color);
+
+    // footer color theme
+    --footer-background-color: var(--main-text-color);
+    --footer-text-color: var(--main-background-color);
+
+    // button color theme
+    --button-background-color: var(--color-first);
+    --button-background-color-rollover: var(--main-background-color);
+    --button-text-color: var(--main-background-color);
+    --button-text-color-rollover: var(--color-first);
+    --button-border-color: var(--button-background-color);
+    --button-border-color-rollover: var(--button-border-color);
+
+    // features benefits color theme
+    // --features-benefits-background-color: red;
+    // --features-benefits-text-color: blue;
+    // --features-benefits-list-bullet-color: yellow;
+
+    // ribbon banner color theme
+    // --banner-background-color: black;
+    // --banner-text-color: green;
+}

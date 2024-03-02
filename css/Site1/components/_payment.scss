@@ -1,0 +1,29 @@
+$select: ".payment" !default;
+
+// components
+@use "Shared/scss/templates/base/components/payment";
+
+@mixin base {
+    @include payment.base;
+
+    #{$select} {
+        font-size: 1em;
+
+        @content;
+    }
+}
+
+@mixin form {
+    @include payment.form;
+
+    #{$select} {
+        &--form {
+            font-size: 0.7em;
+
+            #{$select} {
+            }
+
+            @content;
+        }
+    }
+}

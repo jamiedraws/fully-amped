@@ -1,0 +1,107 @@
+$select: ".countdown" !default;
+
+// config
+@use "./../config/fonts";
+@use "./../config/queries";
+
+// components
+@use "Shared/scss/templates/base/components/countdown";
+
+// abstracts
+@use "Shared/scss/templates/base/abstracts/background";
+@use "Shared/scss/templates/base/abstracts/group";
+@use "Shared/scss/templates/base/abstracts/space";
+
+@mixin base {
+    @include countdown.base;
+
+    #{$select} {
+        --countdown-max-width: 46ch;
+
+        font-size: var(--countdown-font-size, 1em);
+        text-align: center;
+        text-transform: uppercase;
+
+        container: countdown/inline-size;
+
+        width: 100%;
+
+        [data-time-name] {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            &::before {
+                font-size: fonts.cascade-em(50);
+                font-weight: bold;
+
+                margin: 0;
+            }
+
+            &::after {
+                font-size: fonts.cascade-em(18);
+            }
+        }
+
+        [data-minutes]::after {
+            content: "Min";
+        }
+
+        [data-seconds]::after {
+            content: "Sec";
+        }
+
+        &__group {
+            @include group.contain-flex($gap: 0.5rem) {
+            }
+
+            max-width: 46ch;
+        }
+
+        & &__group {
+            margin-inline: auto;
+        }
+
+        &__text {
+            @include space.between-flow-elements($gap: 1rem) {
+            }
+        }
+
+        &__countdown {
+            flex-basis: 100%;
+        }
+
+        &__standfirst {
+            line-height: 1.25;
+
+            @include fonts.base-em(30);
+            font-weight: 600;
+
+            > b {
+                display: block;
+                font-size: fonts.cascade-em(50);
+            }
+        }
+
+        &__title {
+            font-size: fonts.cascade-em(107);
+            font-family: var(--font-second);
+            font-weight: bold;
+            color: var(--color-second);
+            line-height: 1;
+        }
+
+        @container countdown (inline-size > #{queries.em(700)}) {
+            &__group {
+                max-width: none;
+            }
+
+            &__countdown {
+                flex-basis: 10em;
+            }
+        }
+
+        @content;
+    }
+}

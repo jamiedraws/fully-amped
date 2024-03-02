@@ -1,0 +1,98 @@
+$select: ".button" !default;
+
+// config
+@use "../config/fonts";
+
+// components
+@use "Shared/scss/templates/base/components/button";
+
+// abstracts
+@use "Shared/scss/templates/base/abstracts/button" as _button;
+
+@mixin base {
+    @include button.base {
+        --background-color: var(--button-background-color, var(--color-first));
+        --background-color-rollover: var(
+            --button-background-color-rollover,
+            var(--color-first-a)
+        );
+
+        --border-color: var(--button-border-color, var(--background-color));
+        --border-color-rollover: var(
+            --button-border-color-rollover,
+            var(--border-color)
+        );
+
+        --text-color: var(--button-text-color, var(--main-background-color));
+        --text-color-rollover: var(
+            --button-text-color-rollover,
+            var(--text-color)
+        );
+
+        overflow: hidden;
+
+        padding: var(--button-padding, 0.75em);
+        border: 2px solid var(--border-color);
+        border-radius: 0;
+
+        color: var(--text-color);
+
+        text-transform: uppercase;
+        line-height: 1;
+        font-weight: 900;
+        font-size: var(--button-font-size, #{fonts.rem(20)});
+        font-family: var(--body-font-family);
+
+        &:before {
+            background: var(--background-color);
+        }
+
+        &::after {
+            background: var(--background-color-rollover);
+        }
+
+        &::before,
+        &::after,
+        > span {
+            // border-radius: inherit;
+        }
+
+        &:link,
+        &:visited {
+            text-decoration: none;
+        }
+
+        &:hover,
+        &:focus {
+            color: var(--text-color-rollover);
+            border-color: var(--border-color-rollover);
+        }
+
+        &[aria-expanded="true"] {
+            color: var(--background-color);
+            border-color: var(--text-color);
+
+            &::after {
+                background: var(--text-color);
+                opacity: 1;
+            }
+        }
+    }
+
+    #{$select} {
+        @content;
+    }
+}
+
+@mixin circular {
+    #{$select} {
+        &--circular {
+            @include _button.capsule-circular;
+
+            #{$select} {
+            }
+
+            @content;
+        }
+    }
+}

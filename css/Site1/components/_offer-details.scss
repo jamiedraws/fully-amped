@@ -1,0 +1,15 @@
+$select: ".offer-details" !default;
+
+// abstracts
+@use "Shared/scss/templates/base/abstracts/space";
+
+@mixin base {
+    #{$select} {
+        padding: 1.5rem;
+        border: 1px solid rgba(0, 0, 0, 0.5);
+
+        @include space.between-flow-elements;
+
+        @content;
+    }
+}

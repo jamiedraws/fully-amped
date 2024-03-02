@@ -1,0 +1,125 @@
+$select: ".nav" !default;
+
+// config
+@use "./../config/fonts";
+@use "./../config/queries";
+
+// layouts
+@use "Shared/scss/templates/base/layouts/nav" with (
+    $colors: (
+        text: var(--nav-text-color, var(--color-first)),
+        background: var(--nav-background-color, var(--main-background-color)),
+        button-close: var(--nav-button-close-color, var(--nav-text-color))
+    ),
+    $mq: (
+        container-min: queries.get(navbar),
+        container-max: queries.get(navbar)
+    )
+);
+
+// abstracts
+@use "./../abstracts/text";
+
+@mixin base {
+    @include nav.base {
+        font-weight: 600;
+        font-family: var(--font-first);
+        font-size: fonts.em(16);
+
+        text-transform: uppercase;
+        box-shadow: none;
+
+        &__in > &__title {
+            display: none;
+        }
+
+        &__logo {
+            display: flex;
+            align-items: center;
+
+            > img {
+                margin-bottom: -0.5em;
+            }
+        }
+
+        &__link {
+            text-transform: uppercase;
+
+            &:last-of-type {
+                color: var(--color-first);
+                font-weight: 800;
+            }
+        }
+    }
+
+    @include nav.bar {
+        &__in > &__logo,
+        &__title {
+            display: none;
+        }
+
+        &__list {
+            justify-content: space-evenly;
+        }
+
+        &__list > &__link {
+            flex-basis: 10em;
+        }
+
+        &__logo {
+            margin-right: auto;
+            align-items: center;
+        }
+
+        &__link {
+            margin: 1.5em 0.75em;
+            padding: 0;
+
+            --nav-link-font-size: #{fonts.cascade-em(15)};
+
+            font-size: var(--nav-link-font-size);
+            --button-font-size: var(--nav-link-font-size);
+        }
+
+        &__pane &__group {
+            max-width: calc(var(--section-container) + 2rem);
+            box-sizing: content-box;
+            margin: 0 auto;
+        }
+    }
+
+    @include nav.drawer {
+        &__in > &__logo {
+            max-width: 15em;
+        }
+
+        &__pane &__logo {
+            max-width: 15em;
+        }
+
+        &__title {
+            font-size: 1.25em;
+        }
+
+        & &__link,
+        & &__title {
+            padding: 1.5rem 2rem;
+        }
+
+        &__link {
+            background: var(
+                --nav-link-background-color,
+                var(--nav-background-color)
+            );
+        }
+
+        & &__link[id*="order-now"] {
+            --button-padding: 1em 1.5em;
+            justify-content: flex-start;
+        }
+    }
+
+    #{$select} {
+        @content;
+    }
+}

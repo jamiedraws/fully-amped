@@ -1,0 +1,9 @@
+$select: ".hide" !default;
+
+@mixin base {
+    #{$select} {
+        display: none;
+
+        @content;
+    }
+}

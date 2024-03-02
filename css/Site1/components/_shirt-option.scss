@@ -1,0 +1,58 @@
+$select: ".shirt-option" !default;
+
+// config
+@use "./../config/fonts";
+@use "./../config/queries";
+
+// abstracts
+@use "Shared/scss/templates/base/abstracts/group";
+@use "Shared/scss/templates/base/abstracts/background";
+@use "Shared/scss/templates/base/abstracts/space";
+@use "Shared/scss/templates/base/abstracts/list";
+
+@mixin base {
+    #{$select} {
+        @include background.color-map(
+            $background-color: var(--main-background-color),
+            $text-color: var(--main-text-color)
+        ) {
+            padding: 1rem;
+
+            @include group.contain-flex($gap: 2rem 1rem) {
+            }
+
+            align-items: center;
+        }
+
+        &__group {
+        }
+
+        &__picture {
+            flex-basis: clamp(queries.em(180), 5vw, queries.em(220));
+        }
+
+        &__text {
+            flex-basis: 19ch;
+            flex-grow: 1;
+
+            @include space.between-flow-elements($gap: 1rem) {
+            }
+        }
+
+        &__title {
+            font-size: fonts.cascade-em(25);
+
+            + p {
+                font-weight: 600;
+            }
+        }
+
+        ul {
+            @include list.structure($offset: 1.5rem, $gap: 1rem);
+            @include list.bullet($bullet: "•", $size: 1em) {
+            }
+        }
+
+        @content;
+    }
+}

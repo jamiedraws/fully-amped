@@ -1,0 +1,61 @@
+$select: ".bonus-text-product" !default;
+
+// config
+@use "./../config/fonts";
+@use "./../config/queries";
+
+// abstracts
+@use "Shared/scss/templates/base/abstracts/group";
+@use "Shared/scss/templates/base/abstracts/background";
+@use "./../abstracts/text";
+
+@mixin base {
+    #{$select} {
+        @include background.color-map(
+            var(--color-second-b),
+            var(--main-background-color)
+        );
+
+        padding: 0.5em;
+        margin: 1em 0 2.5em;
+
+        &__group {
+            @include group.contain;
+            align-items: center;
+            justify-content: space-between;
+
+            overflow: visible;
+        }
+
+        &__text {
+            display: flex;
+            flex-direction: column;
+
+            text-align: center;
+            font-size: fonts.em(18);
+            line-height: 1.5;
+
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        &__title {
+            font-size: 2.75em;
+            text-transform: uppercase;
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        &__call-out {
+            @include text.call-out;
+            letter-spacing: 0.15em;
+        }
+
+        &__product {
+            margin: -4em 0 -5em;
+            max-width: queries.em(50);
+        }
+
+        @content;
+    }
+}

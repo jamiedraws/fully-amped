@@ -1,0 +1,12 @@
+$select: ".content-reveal" !default;
+
+// utils
+@use "Shared/scss/templates/base/utils/content-reveal";
+
+@mixin base {
+    @include content-reveal.base;
+
+    #{$select} {
+        @content;
+    }
+}

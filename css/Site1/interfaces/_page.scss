@@ -1,0 +1,76 @@
+// utils
+@use "Shared/scss/templates/base/utils/scope";
+@use "./../utils/contain";
+@use "./../utils/element-controller";
+@use "./../utils/disclosure";
+
+// components
+@use "./../components/button";
+@use "./../components/list";
+@use "./../components/offer";
+@use "./../components/payment";
+@use "./../components/fp-nav";
+@use "./../components/features-benefits";
+@use "./../components/figure-picture-text";
+@use "./../components/banner";
+@use "./../components/bonus-text-product";
+@use "./../components/step-text";
+@use "./../components/card";
+@use "./../components/countdown";
+
+// layouts
+@use "./../layouts/content";
+@use "./../layouts/main-offer";
+@use "./../layouts/accordion";
+@use "./../layouts/slide";
+@use "./../layouts/picture-text-boxes";
+@use "./../layouts/sign-up";
+@use "./../layouts/faq";
+@use "./../layouts/conf";
+
+@mixin base {
+    // components
+    @include scope.for-template {
+        @include button.base;
+        @include button.circular;
+    }
+
+    @include list.base;
+
+    // layouts
+    @include conf.base;
+
+    @content;
+}
+
+@mixin index {
+    // utils
+    @include contain.base;
+    @include element-controller.base;
+    @include disclosure.base;
+
+    // components
+    @include offer.base;
+    @include payment.base;
+    @include banner.base;
+    @include step-text.base;
+    @include countdown.base;
+
+    // layouts
+    @include main-offer.base;
+    @include sign-up.base;
+    @include picture-text-boxes.base;
+
+    @content;
+}
+
+@mixin faq {
+    // components
+    @include card.base;
+
+    // layouts
+    @include accordion.base;
+    @include faq.base;
+
+    @content;
+}

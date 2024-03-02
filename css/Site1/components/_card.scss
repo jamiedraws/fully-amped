@@ -1,0 +1,38 @@
+$select: ".card" !default;
+
+// config
+@use "./../config/fonts";
+
+// abstracts
+@use "Shared/scss/templates/base/abstracts/space";
+
+@mixin base {
+    #{$select} {
+        box-shadow: 0 0 0.3em rgba(0, 0, 0, 0.25);
+        text-align: left;
+
+        button {
+            width: 100%;
+            text-align: left;
+            padding: 1em;
+        }
+
+        &:not(:last-child) {
+            margin-bottom: 1em;
+        }
+
+        & &__header {
+            font-size: 1em;
+            font-weight: 600;
+        }
+
+        &__content {
+            padding: 1em;
+            border-top: 1px solid;
+
+            @include space.between-flow-elements;
+        }
+
+        @content;
+    }
+}

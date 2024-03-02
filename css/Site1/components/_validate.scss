@@ -1,0 +1,34 @@
+$select: ".message" !default;
+
+// components
+@use "Shared/scss/templates/base/components/validate" with (
+    $select: $select,
+    $separator: "",
+    $font-size: 1em
+);
+
+// abstracts
+@use "Shared/scss/templates/base/abstracts/background";
+
+@mixin base {
+    @include validate.base;
+
+    #{$select} {
+        &__group {
+            order: 1;
+        }
+
+        &__invalid {
+            @include background.color-map(
+                $background-color:
+                    var(--validate-invalid-background-color, transparent),
+                $text-color: var(--validate-invalid-text-color, currentColor)
+            ) {
+                padding: var(--validate-invalid-padding, 0);
+                border-radius: 0.25em;
+            }
+        }
+
+        @content;
+    }
+}

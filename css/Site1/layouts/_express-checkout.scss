@@ -1,0 +1,38 @@
+@use "sass:map";
+
+$select: ".express-checkout" !default;
+
+// layouts
+@use "Shared/scss/templates/base/layouts/express-checkout";
+
+// abstracts
+@use "Shared/scss/templates/base/abstracts/form";
+
+@mixin base {
+    @include express-checkout.base(
+        $size: 2em,
+        $icon-color: white,
+        $background-color: #7ac142
+    );
+
+    #{$select} {
+        &__radio {
+            border-radius: 100%;
+            border-color: map.get(form.$colors, valid);
+            border-width: 0.2em;
+            background-color: #eef0ed;
+            font-size: 0.7rem;
+        }
+
+        &__checkout-option {
+            @include form.toggle-input-checked {
+                & ~ #{$select}__radio,
+                & ~ #{$select}__label > #{$select}__radio {
+                    background-size: 1.25em;
+                }
+            }
+        }
+
+        @content;
+    }
+}

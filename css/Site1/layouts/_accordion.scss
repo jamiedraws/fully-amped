@@ -1,0 +1,43 @@
+$select: ".accordion" !default;
+
+// config
+@use "./../config/queries";
+
+// abstracts
+@use "./../abstracts/plus-minus-icon";
+
+// layouts
+@use "Shared/scss/templates/base/layouts/accordion";
+
+@mixin base {
+    @include accordion.base;
+
+    #{$select} {
+        &,
+        * {
+            outline-color: black;
+        }
+
+        &__button {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            word-break: break-word;
+        }
+
+        &__icon {
+            @include plus-minus-icon.icon;
+        }
+
+        &__button[aria-expanded="false"] > &__icon {
+            @include plus-minus-icon.plus;
+        }
+
+        &__button[aria-expanded="true"] > &__icon {
+            @include plus-minus-icon.minus;
+        }
+
+        @content;
+    }
+}

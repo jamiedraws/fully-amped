@@ -1,0 +1,33 @@
+$select: ".faq" !default;
+
+// config
+@use "./../config/fonts";
+@use "./../config/queries";
+
+// abstracts
+@use "Shared/scss/templates/base/abstracts/group";
+@use "Shared/scss/templates/base/abstracts/space";
+
+@mixin base {
+    #{$select} {
+        padding-top: var(--section-container-frame-outer);
+        padding-bottom: var(--section-container-frame-outer);
+        overflow: hidden;
+
+        @include fonts.base-em(18);
+
+        text-align: center;
+
+        &__header {
+            margin-bottom: 3rem;
+        }
+
+        &__title {
+            font-size: clamp(fonts.cascade-em(30), 7vw, fonts.cascade-em(50));
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        @content;
+    }
+}

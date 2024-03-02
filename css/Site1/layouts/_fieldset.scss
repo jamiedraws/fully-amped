@@ -1,0 +1,102 @@
+$select: ".fieldset" !default;
+
+// config
+@use "./../config/fonts";
+@use "./../config/queries";
+
+// abstracts
+@use "Shared/scss/templates/base/abstracts/group";
+@use "Shared/scss/templates/base/abstracts/space";
+@use "Shared/scss/templates/base/abstracts/background";
+
+$size: 0.5rem;
+
+@mixin base {
+    #{$select} {
+        &__group {
+            @include group.contain-flex($size);
+            @include group.flexchild(1 1 14em);
+        }
+
+        &__group > &__group {
+            margin: 0;
+        }
+
+        &__take-all {
+            flex-basis: 100%;
+        }
+
+        &__title {
+            padding: 0.5em;
+            @include background.color-map(
+                $background-color: var(--color-first),
+                $text-color: var(--main-background-color)
+            );
+
+            font-size: fonts.em(20);
+        }
+
+        &__content {
+            @include space.between-flow-elements;
+        }
+
+        @content;
+    }
+}
+
+@mixin radiogroup {
+    #{$select} {
+        &--radiogroup {
+            margin-block: 0.5rem;
+
+            #{$select} {
+                &__take-all {
+                    display: block;
+                }
+
+                &__group {
+                    @include background.color-map(
+                        $background-color: var(--main-background-color),
+                        $text-color: var(--main-text-color)
+                    ) {
+                        padding: 1rem;
+                        border-radius: 0.25rem;
+                        margin-block: 0.5rem;
+                    }
+
+                    display: inline-flex;
+                    justify-content: flex-start;
+                    gap: 2rem;
+
+                    @include group.flexchild($flex: 0 1 auto) {
+                    }
+                }
+            }
+
+            @content;
+        }
+    }
+}
+
+@mixin frame {
+    #{$select} {
+        $space: 0.5rem;
+
+        &--frame {
+            outline: 1px solid;
+            padding: #{$space};
+
+            #{$select} {
+                &__container {
+                    padding: #{$size};
+                }
+
+                &__title {
+                    margin: -#{$space} -#{$space} #{$space};
+                }
+            }
+
+            @content;
+        }
+    }
+}

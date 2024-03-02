@@ -1,0 +1,10 @@
+@use "sass:map";
+
+@forward "Shared/scss/templates/base/config/units";
+
+@mixin scope {
+    --main-body-font: var(--font-first);
+
+    --font-first: montserrat, sans-serif;
+    --font-second: ff-good-web-pro, sans-serif;
+}

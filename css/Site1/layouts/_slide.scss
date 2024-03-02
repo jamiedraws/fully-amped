@@ -1,0 +1,92 @@
+$select: ".slide" !default;
+
+// layouts
+@use "Shared/scss/templates/base/layouts/slide" with (
+    $select: $select
+);
+
+// config
+@use "./../config/fonts";
+@use "./../config/queries";
+
+@mixin base {
+    @include slide.base;
+
+    #{$select} {
+        --carousel-button-color-background: white;
+        --carousel-button-color-active: var(--main-text-color);
+        --carousel-button-color-inactive: var(--main-text-color);
+
+        --carousel-length: 100%;
+        --carousel-slide-length: 90%;
+        --carousel-nav-length: var(--carousel-length);
+
+        --carousel-offset: 0.1em;
+        --carousel-inset: 0.1em;
+
+        max-width: calc(var(--carousel-length) + var(--carousel-offset));
+        margin: auto;
+
+        &__into {
+            max-width: var(--carousel-slide-length);
+            margin: auto;
+
+            &::-webkit-scrollbar {
+                background: rgba(0, 0, 0, 0);
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: rgba(0, 0, 0, 0);
+            }
+        }
+
+        &__container {
+            position: relative;
+        }
+
+        &__item {
+            align-items: stretch;
+        }
+
+        &__nav {
+            max-width: calc(
+                var(--carousel-nav-length) + var(--carousel-offset) -
+                    var(--carousel-inset)
+            );
+            width: 100%;
+
+            z-index: 2;
+            pointer-events: none;
+
+            button {
+                pointer-events: all;
+
+                background: var(--carousel-button-color-background);
+                color: var(--carousel-button-color-inactive);
+
+                border: none;
+
+                &:hover,
+                &:focus {
+                    color: var(--carousel-button-color-active);
+                    background: none;
+                }
+
+                > svg {
+                    fill: currentColor;
+                    stroke-width: 0.5px;
+                    transform: rotate(0.25turn);
+                }
+            }
+        }
+
+        @media all and (max-width: slide.$desktop) {
+            &__nav {
+                justify-content: center;
+                gap: 0.5rem;
+            }
+        }
+
+        @content;
+    }
+}

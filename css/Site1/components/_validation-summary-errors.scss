@@ -1,0 +1,49 @@
+$select: ".validation-summary-errors" !default;
+
+// components
+@use "Shared/scss/templates/base/components/validation-summary-errors" as vse;
+
+// config
+@use "Shared/scss/templates/base/config/colors";
+
+// abstracts
+@use "Shared/scss/templates/base/abstracts/background";
+
+@mixin base {
+    @include vse.base;
+
+    #{$select} {
+        @include background.color-map(
+            $background-color: var(--vse-background-color, transparent),
+            $text-color: var(--vse-text-color, vse.$color)
+        ) {
+            padding: var(--vse-padding, 0);
+            border-radius: 0.25em;
+        }
+
+        > span {
+            display: flex;
+            align-items: center;
+
+            &::before {
+                $size: 1.5em;
+
+                content: "";
+                background-image: url("data:image/svg+xml;charset=utf8,\
+                %3Csvg xmlns='http://www.w3.org/2000/svg' focusable='false' tabindex='-1' title='Error' aria-hidden='true' viewBox='0 0 24 24'%3E\
+                    %3Cpath fill='#{colors.convert-to-hex(vse.$color)}' d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'%3E%3C/path%3E\
+                %3C/svg%3E");
+                display: inline-block;
+                width: #{$size};
+                height: #{$size};
+                margin-right: 0.5em;
+            }
+        }
+
+        ul {
+            margin-bottom: 1rem;
+        }
+
+        @content;
+    }
+}

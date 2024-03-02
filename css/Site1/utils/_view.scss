@@ -1,0 +1,31 @@
+$select: ".view" !default;
+$scroll-offset: 2em !default;
+
+// config
+@use "./../config/colors";
+@use "./../config/fonts";
+@use "./../config/queries";
+
+// utils
+@use "Shared/scss/templates/base/utils/view" with (
+    $breakpoint: queries.get(navbar)
+);
+
+@mixin base {
+    @include view.base;
+
+    @include view.set-anchor-position(
+        $static-amount: -#{$scroll-offset},
+        $dynamic-amount: -#{$scroll-offset}
+    );
+
+    @include view.zero-anchor-position("[data-viewport]");
+
+    #{$select} {
+        &__scroll {
+            top: #{$scroll-offset};
+        }
+
+        @content;
+    }
+}

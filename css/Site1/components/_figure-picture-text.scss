@@ -1,0 +1,32 @@
+$select: ".figure-picture-text" !default;
+
+// config
+@use "./../config/fonts";
+@use "./../config/queries";
+
+// abstracts
+@use "Shared/scss/templates/base/abstracts/background";
+
+@mixin base {
+    #{$select} {
+        position: relative;
+
+        @include background.color-map(
+            var(--main-text-color),
+            var(--main-background-color)
+        );
+
+        figcaption {
+            position: absolute;
+
+            top: 1em;
+            left: 1em;
+
+            max-width: 4em;
+
+            font: fonts.em(30) / 1 var(--font-second);
+        }
+
+        @content;
+    }
+}

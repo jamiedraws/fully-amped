@@ -1,0 +1,19 @@
+$select: ".list" !default;
+
+// abstracts
+@use "Shared/scss/templates/base/abstracts/list";
+
+@mixin base {
+    #{$select} {
+        @include list.structure;
+
+        &--stack {
+            @include list.circle(
+                $size: 0.5em,
+                $color: var(--list-bullet-color, var(--color-first))
+            );
+        }
+
+        @content;
+    }
+}

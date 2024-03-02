@@ -1,0 +1,19 @@
+// interfaces
+@use "Shared/scss/templates/base/interfaces/dtm";
+@use "interfaces/app";
+@use "interfaces/page";
+@use "interfaces/form";
+
+@include dtm.base;
+@include dtm.form;
+@include dtm.upsell;
+@include dtm.confirmation;
+@include dtm.make-backend-responsive;
+
+@include app.critical;
+
+@include page.base;
+@include page.index;
+@include page.faq;
+
+@include form.order-form;
